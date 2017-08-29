@@ -6,6 +6,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jcflesson1.MainFormController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="320.0" prefWidth="487.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="jcflesson1.MainFormController">
+   <children>
+      <TextField fx:id="textfield_input" layoutX="14.0" layoutY="31.0" prefHeight="121.0" prefWidth="291.0" />
+      <Label layoutX="14.0" layoutY="14.0" text="INPUT" />
+      <Label layoutX="14.0" layoutY="155.0" text="OUTPUT" />
+      <TextField fx:id="textfield_output" layoutX="14.0" layoutY="172.0" prefHeight="128.0" prefWidth="291.0" />
+      <Button fx:id="button_aantal" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="Aantal" />
+      <Button fx:id="button_sorteer" layoutX="351.0" layoutY="62.0" mnemonicParsing="false" onAction="#action_sorteer" prefHeight="25.0" prefWidth="94.0" text="Sorteer" />
+      <Button fx:id="button_frequentie" layoutX="351.0" layoutY="93.0" mnemonicParsing="false" onAction="#action_frequentie" prefHeight="25.0" prefWidth="94.0" text="Frequentie" />
+      <Button fx:id="button_concordantie" layoutX="351.0" layoutY="127.0" mnemonicParsing="false" onAction="#action_concordantie" prefHeight="25.0" prefWidth="94.0" text="Concordantie" />
+   </children>
 </AnchorPane>
