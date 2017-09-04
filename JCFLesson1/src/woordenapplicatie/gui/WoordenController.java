@@ -10,6 +10,7 @@ package woordenapplicatie.gui;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import static java.util.Collections.list;
 import java.util.HashSet;
@@ -74,7 +75,7 @@ public class WoordenController implements Initializable {
         String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+"," ");
         splittedInput = input.split("\\s"); 
         
-          //Only keep a-z and A-Z
+        //Only keep a-z and A-Z
         for (int i = 0; i < splittedInput.length; i++)
         {
             String newString = splittedInput[i].replaceAll(",|\'", "");
@@ -105,7 +106,12 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void frequentieAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        ArrayList<String> splittedInputAsArrayList = new ArrayList<>(Arrays.asList(splittedInput));
+
+        for (String word : noDuplicates) {
+            int frequency = Collections.frequency(splittedInputAsArrayList, word);
+            System.out.println("Frequency of " + word + ": " + frequency);
+        }
     }
 
     @FXML
