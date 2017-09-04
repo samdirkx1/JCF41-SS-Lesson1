@@ -75,7 +75,6 @@ public class WoordenController implements Initializable {
         String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+"," ");
         splittedInput = input.split("\\s"); 
         
-        //Only keep a-z and A-Z
         for (int i = 0; i < splittedInput.length; i++)
         {
             String newString = splittedInput[i].replaceAll(",|\'", "");
