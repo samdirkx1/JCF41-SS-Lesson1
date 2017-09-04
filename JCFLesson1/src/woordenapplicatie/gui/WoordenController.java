@@ -10,7 +10,9 @@ package woordenapplicatie.gui;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,14 +64,29 @@ public class WoordenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         taInput.setText(DEFAULT_TEXT);
-        
-        String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+"," ");
-        splittedInput = input.split("\\s"); 
     }
     
     @FXML
     private void aantalAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+"," ");
+        splittedInput = input.split("\\s"); 
+        
+//          //Only keep a-z and A-Z
+//        for (int i = 0; i < splittedInput.length; i++)
+//        {
+//            splittedInput[i].replaceAll("[^A-Za-z]+", "");
+//        }    
+
+        //Show total amount of words
+        System.out.println("Totaal aantal woorden:" + splittedInput.length);
+
+        //show amount of different words
+        Set<String> noDuplicates = new HashSet<String>();
+        for (String set : splittedInput) {
+            noDuplicates.add(set);
+        }
+        
+        System.out.println("Aantal verschillende woorden:" + noDuplicates.size());
     }
 
     @FXML
