@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,9 +27,9 @@ import javafx.stage.Stage;
 public class MainFormController implements Initializable {
 
     @FXML
-    public TextField input;
+    public TextArea input;
     @FXML
-    public TextField output;
+    public TextArea output;
     
     /**
      * Initializes the controller class.
