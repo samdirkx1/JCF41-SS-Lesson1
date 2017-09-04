@@ -9,13 +9,16 @@ package woordenapplicatie.gui;
 
 
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import static java.util.Collections.list;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.event.ActionEvent;
@@ -115,7 +118,47 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void concordatieAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        String textNoWhiteSpaces = DEFAULT_TEXT.replaceAll("\n\n", "\n");
+        textNoWhiteSpaces = textNoWhiteSpaces.replaceAll("\'", "");
+
+        String[] inputPerLine = textNoWhiteSpaces.split("\n");
+        
+        ArrayList<String[]> wordsPerLine = new ArrayList<String[]>();
+        
+        for (int i = 0; i < inputPerLine.length; i++)
+        {
+            inputPerLine[i] = inputPerLine[i].replaceAll("[\\s\\n]+"," ");
+            inputPerLine[i] = inputPerLine[i].replaceAll("[,|.]+","");
+            String[] wordsOfLine = inputPerLine[i].split("\\s");
+            
+            wordsPerLine.add(wordsOfLine);
+        }
+        
+        HashMap<String,String> hash = new HashMap<String,String>();
+        
+        //Print die con cordashian
+        for (int i = 0; i < wordsPerLine.size(); i++)
+        {
+            for (String word : wordsPerLine.get(i))
+            {
+                String normalWord = Normalizer.normalize(word, Normalizer.Form.NFD);
+                normalWord = normalWord.replaceAll("[^\\p{ASCII}]", "");
+                normalWord = normalWord.toLowerCase();
+                if(hash.containsKey(normalWord))
+                {
+                    hash.put(normalWord, hash.get(normalWord) + ", " + (i + 1));
+                }
+                else
+                {
+                    hash.put(normalWord, "" + (i + 1));
+                }
+            }
+        }
+        
+        for(Map.Entry<String,String> entry : hash.entrySet())
+        {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
     }
    
 }
