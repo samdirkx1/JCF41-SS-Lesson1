@@ -10,7 +10,11 @@ package woordenapplicatie.gui;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import static java.util.Collections.list;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.event.ActionEvent;
@@ -18,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import static javafx.scene.input.KeyCode.T;
 
 /**
  * FXML Controller class
@@ -60,38 +65,42 @@ public class WoordenController implements Initializable {
     private TextArea taOutput;
     
     private String[] splittedInput;
+    Set<String> noDuplicates = new HashSet<String>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         taInput.setText(DEFAULT_TEXT);
-    }
-    
-    @FXML
-    private void aantalAction(ActionEvent event) {
+        
         String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+"," ");
         splittedInput = input.split("\\s"); 
         
-//          //Only keep a-z and A-Z
-//        for (int i = 0; i < splittedInput.length; i++)
-//        {
-//            splittedInput[i].replaceAll("[^A-Za-z]+", "");
-//        }    
-
+          //Only keep a-z and A-Z
+        for (int i = 0; i < splittedInput.length; i++)
+        {
+            String newString = splittedInput[i].replaceAll(",|\'", "");
+            splittedInput[i] = newString;
+        }  
+        
+        for (String set : splittedInput) {
+            noDuplicates.add(set);
+        }
+    }
+    
+    @FXML
+    private void aantalAction(ActionEvent event) {  
         //Show total amount of words
         System.out.println("Totaal aantal woorden:" + splittedInput.length);
 
         //show amount of different words
-        Set<String> noDuplicates = new HashSet<String>();
-        for (String set : splittedInput) {
-            noDuplicates.add(set);
-        }
-        
         System.out.println("Aantal verschillende woorden:" + noDuplicates.size());
     }
 
     @FXML
     private void sorteerAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        List list = new ArrayList(noDuplicates);
+        Collections.sort(list, Collections.reverseOrder());
+        Set resultSet = new LinkedHashSet(list);
+        this.taOutput.setText(resultSet.toString());
     }
 
     @FXML
