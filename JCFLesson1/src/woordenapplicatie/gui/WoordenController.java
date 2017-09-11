@@ -90,7 +90,7 @@ public class WoordenController implements Initializable {
     }
     
     @FXML
-    private void aantalAction(ActionEvent event) {  
+    private void aantalAction() {  
         //Show total amount of words
         System.out.println("Totaal aantal woorden:" + splittedInput.length);
 
@@ -99,7 +99,7 @@ public class WoordenController implements Initializable {
     }
 
     @FXML
-    private void sorteerAction(ActionEvent event) {
+    private void sorteerAction() {
         List list = new ArrayList(noDuplicates);
         Collections.sort(list, Collections.reverseOrder());
         Set resultSet = new LinkedHashSet(list);
@@ -107,7 +107,7 @@ public class WoordenController implements Initializable {
     }
 
     @FXML
-    private void frequentieAction(ActionEvent event) {
+    private void frequentieAction() {
         ArrayList<String> splittedInputAsArrayList = new ArrayList<>(Arrays.asList(splittedInput));
 
         for (String word : noDuplicates) {
@@ -117,7 +117,7 @@ public class WoordenController implements Initializable {
     }
 
     @FXML
-    private void concordatieAction(ActionEvent event) {
+    private void concordatieAction() {
         String textNoWhiteSpaces = DEFAULT_TEXT.replaceAll("\n\n", "\n");
         textNoWhiteSpaces = textNoWhiteSpaces.replaceAll("\'", "");
 
