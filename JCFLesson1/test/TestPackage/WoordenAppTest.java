@@ -26,6 +26,11 @@ public class WoordenAppTest {
     @Test
     public void WoordenTest10000()
     {
+        long start = System.currentTimeMillis();
         
+        //Implement test here
+        
+        long end = System.currentTimeMillis();
+        System.out.println(end-start);
     }
 }
