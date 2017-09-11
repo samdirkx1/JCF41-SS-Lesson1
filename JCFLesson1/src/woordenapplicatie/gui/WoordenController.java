@@ -54,20 +54,32 @@ public class WoordenController implements Initializable {
                                                 "Zetten we 't in de glazenkast\n" +
                                                 "Een, twee, drie, vier\n" +
                                                 "Hoedje van papier";
-    
+
     public String[] DEFAULT_TEXT_asArray() {
         //houd enkel woorden en spaties over
         String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+", " ");
         input = input.replaceAll(",|\'", "");
         input.replaceAll("\n\n", "\n");
         input.replaceAll("\'", "");
-        input.replaceAll("[\\s\\n]+"," ");
-        input.replaceAll("[,|.]+","");
-
+        input.replaceAll("[\\s\\n]+", " ");
+        input.replaceAll("[,|.]+", "");
+        
         String[] textAsArray = input.split("\\s");
-
         return textAsArray;
     }
+
+    
+    public Set<String> noDuplicatesText(String input)
+    {
+        Set<String> noDuplicates = new HashSet<String>();
+        
+        for (String set : DEFAULT_TEXT_asArray()) {
+            noDuplicates.add(set);
+        }
+        
+        return noDuplicates;
+    }
+
     
     public String DEFAULT_TEXT_Extended(int totalwords)
     {
