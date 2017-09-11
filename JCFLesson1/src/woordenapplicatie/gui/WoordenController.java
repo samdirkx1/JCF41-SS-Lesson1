@@ -55,6 +55,41 @@ public class WoordenController implements Initializable {
                                                 "Een, twee, drie, vier\n" +
                                                 "Hoedje van papier";
     
+    public String[] DEFAULT_TEXT_asArray() {
+        //houd enkel woorden en spaties over
+        String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+", " ");
+        input = input.replaceAll(",|\'", "");
+        input.replaceAll("\n\n", "\n");
+        input.replaceAll("\'", "");
+        input.replaceAll("[\\s\\n]+"," ");
+        input.replaceAll("[,|.]+","");
+
+        String[] textAsArray = input.split("\\s");
+
+        return textAsArray;
+    }
+    
+    public String DEFAULT_TEXT_Extended(int totalwords)
+    {
+        String result = "";
+        
+        String[] textAsArray = this.DEFAULT_TEXT_asArray();
+        int wordNumber = 0;
+                
+        for (int i = 0; i < totalwords; i++)
+        {
+            result += textAsArray[wordNumber] + " ";
+            wordNumber++;
+            if (wordNumber >= textAsArray.length-1)
+            {
+                wordNumber = 0;
+            }
+        }
+        
+        result = result.trim();
+        return result;
+    }
+   
     @FXML
     private Button btAantal;
     @FXML
@@ -75,6 +110,11 @@ public class WoordenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         taInput.setText(DEFAULT_TEXT);
         
+        String testverlengd = this.DEFAULT_TEXT_Extended(100);
+        //String kleinverlengd = this.DEFAULT_TEXT_Extended(10000);
+        //String grootverlengd = this.DEFAULT_TEXT_Extended(1000000); //duurt te lang, niet proberen
+        String[] testVerlengdAsArray = testverlengd.split("\\s");
+
         String input = DEFAULT_TEXT.replaceAll("[\\s\\n]+"," ");
         splittedInput = input.split("\\s"); 
         
